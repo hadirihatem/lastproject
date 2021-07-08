@@ -46,7 +46,7 @@ export const loadUser = (id) => (dispatch) => {
     .catch((err) =>
       dispatch({
         type: LOAD_USER_FAIL,
-        payload: err.response.data.msg,
+        payload: err
       })
     );
 };
@@ -64,7 +64,7 @@ export const loginUser = (data) => (dispatch) => {
     .catch((err) =>
       dispatch({
         type: LOGIN_FAIL,
-        payload: err.response.data.msg,
+        payload: err
       })
     );
 };

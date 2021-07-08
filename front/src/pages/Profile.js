@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import UploadImg from "./UploadImg";
-import { Modal } from "antd";
+import { Modal ,Input} from "antd";
 import { loadUser } from "../action/authaction";
 import "./Profile.css";
 import { updateuser } from "../action/useraction";
@@ -28,7 +28,7 @@ const Profile = () => {
   };
 
   const handleOk = () => {
-    dispatch(updateuser( auth.user._id,changeprofil));
+    dispatch(updateuser(auth.user._id, changeprofil));
     setIsModalVisible(false);
   };
 
@@ -41,12 +41,11 @@ const Profile = () => {
     console.log(changeprofil);
   };
 
-  const [subscribed,setSubscribed]=useState(false)
-  const handleclick =()=>{
-   setSubscribed(!subscribed)
-   console.log(subscribed)
-
-  }
+  const [subscribed, setSubscribed] = useState(false);
+  const handleclick = () => {
+    setSubscribed(!subscribed);
+    console.log(subscribed);
+  };
 
   return (
     <div>
@@ -57,7 +56,8 @@ const Profile = () => {
               <img
                 src={auth.user.avatar}
                 style={{ borderRadius: "50%", width: "300px", height: "300px" }}
-              className='imgs' />
+                className="imgs"
+              />
             </div>
 
             <div class="profile-user-settings">
@@ -68,7 +68,7 @@ const Profile = () => {
               </button>
 
               <button class="btn profile-edit-btn" onClick={handleclick}>
-              {subscribed ? "Follow" : "Unfollow"}
+                {subscribed ? "Follow" : "Unfollow"}
               </button>
             </div>
 
@@ -79,24 +79,32 @@ const Profile = () => {
                 onOk={handleOk}
                 onCancel={handleCancel}
               >
-                <input
+                <label style={{ marginRight: 10 }}>firstname </label>
+                <Input
                   placeholder={auth.user.firstname}
                   value={changeprofil.firstname}
                   name="firstname"
                   onChange={handleChange}
-                />
-                <input
+                />{" "}
+                <br />
+                <label style={{ marginRight: 10 }}>lastname </label>
+                <Input
                   placeholder={auth.user.lastname}
                   value={changeprofil.lastname}
                   name="lastname"
                   onChange={handleChange}
                 />
-                <input
-                placeholder={auth.user.bio}
-                value={changeprofil.bio}
-                name="bio"
-                onChange={handleChange}
-              />
+                <br />
+                <label style={{ marginRight: 10 }}>bio </label>
+                <Input
+                  placeholder={auth.user.bio}
+                  value={changeprofil.bio}
+                  name="bio"
+                  onChange={handleChange}
+                />
+                <br />
+                <br />
+                <br />
                 <UploadImg />
               </Modal>
             </div>

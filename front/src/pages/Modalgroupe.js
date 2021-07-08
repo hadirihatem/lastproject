@@ -9,7 +9,7 @@ import { loadUser } from "../action/authaction";
 
 import {addPost}from "../action/postaction"
 import './Posts.css'
-
+import {Input} from "antd";
 
 
 const customStyles = {
@@ -89,18 +89,18 @@ closeModal();
         <Form>
           <label style={{ marginRight: 10 }}>Title</label>
 
-          <input type="text" name="title" onChange={handleChange} />
+          <Input type="text" name="title" onChange={handleChange} />
 
           <br />
 
           <label style={{ marginRight: 10 }}>Discription</label>
 
-          <input type="text" name="discription" onChange={handleChange} />
+          <Input type="text" name="discription" onChange={handleChange} />
           <br />
 
           <label style={{ marginRight: 10 }}>picture</label>
 
-          <input type="file" name="picture"  onChange={handlefile} />
+          <Input type="file" name="picture"  onChange={handlefile} />
         </Form>
 
         <Button variant="outline-info" onClick={handleClose}>
