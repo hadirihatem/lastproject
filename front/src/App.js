@@ -14,6 +14,7 @@ import { SliderImg } from "./pages/SliderImg";
 import Groupepost from "./pages/Groupepost";
 import GroupeAdmin from "./pages/GroupeAdmin";
 import Tablegroupeadmin from "./pages/Tablegroupeadmin"
+import ProfileFrd from "./pages/ProfileFrd";
 
 function App() {
   return (
@@ -29,6 +30,8 @@ function App() {
           <Route exact path="/register" component={Register} />
           <Route exact path="/login" component={Login} />
           <PrivetRoute exact path="/Profile" component={Profile} />
+          <PrivetRoute exact path="/Profile/:id" component={ProfileFrd} />
+
           <PrivetRoute exact path="/feed" component={Feed} />
           <PrivetRoute exact path="/Groupe" component={Groupe} />
           <PrivetRoute exact path="/Post" component={Postnew} />

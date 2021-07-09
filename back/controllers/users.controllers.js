@@ -241,28 +241,3 @@ exports.friends= async (req, res) => {
 };
 //-------------------------------
 
-exports.putlikepost = async (req, res) => {
-   
-  try {
-    const post = await PostModel.findById(req.params.postId);
-    if (!post) return res.status(404).json("Post not found")
-    console.log(post.likers)
-    console.log(req.userId)
-    const search = post.likers.find(like=>like == req.userId)
-    
-    if (!search) {
-      console.log('true')
-      const newPost = await Post.findByIdAndUpdate(req.params.postId,{ likers:[...post.likers,req.userId]});
-      res.status(200).json(newPost.likers);
-    } 
-    else {
-      console.log('false')
-      const newPost = await Post.findByIdAndUpdate(req.params.postId,{ $pull: { likers: req.userId}});
-      // await post.updateOne({ $pull: { likers: req.userId } });
-      res.status(200).json(newPost.likers);
-    }
-   
-  } catch (err) {
-    res.status(500).json(err); 
-  }
-};

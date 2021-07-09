@@ -1,6 +1,7 @@
-import { UPLOAD_PICTURE, LOAD_USER_SUCCESS } from "../action/type";
+import { UPLOAD_PICTURE, LOAD_USER_SUCCESS,GETUSERS_SUCCESS } from "../action/type";
 let initialState = {
   avatar: null,
+  users:[]
 };
 
 const userReducer = (state = initialState, action) => {
@@ -12,6 +13,11 @@ const userReducer = (state = initialState, action) => {
         ...state,
         avatar: action.payload,
       };
+      case GETUSERS_SUCCESS:
+        return{
+          ...state,
+          users:action.payload
+        }
 
     default:
       return state;

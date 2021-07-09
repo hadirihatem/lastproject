@@ -6,7 +6,7 @@ import { loadUser } from "../action/authaction";
 import "./Profile.css";
 import { updateuser } from "../action/useraction";
 
-const Profile = () => {
+const Profile = ({profileId}) => {
   const dispatch = useDispatch();
   const auth = useSelector((state) => state.auth);
   const [changeprofil, setChangeprofil] = useState({

@@ -5,11 +5,9 @@ import React, { useState, useEffect } from "react";
 import { Button } from "././pages/Button";
 import "./App.css";
 import "./Navbar.css";
-
-import { Input, Space } from 'antd';
+import Searchbar from './pages/Searchbar'
 import { AudioOutlined } from '@ant-design/icons';
 
-const { Search } = Input;
 
 const suffix = (
   <AudioOutlined
@@ -43,6 +41,8 @@ const Navbar = () => {
   window.addEventListener("resize", showButton);
   const dispatch = useDispatch();
   const auth = useSelector((state) => state.auth);
+  const user = useSelector((state) => state.user);
+
 
   return (
     <div>
@@ -57,12 +57,8 @@ const Navbar = () => {
           {auth.isAuth ? (
             <div>
               <ul className={click ? "nav-menu active" : "nav-menu"}>
-              <li className="nav-Item">
-              <Space direction="vertical">
-              <Search placeholder="input search text" allowClear /*onSearch={onSearch}*/ style={{ width: '200px', marginTop:'10px'}} />
-               </Space>
-                </li>
-                               
+             
+      <Searchbar />   
                 <li className="nav-Item">
                   <Link
                     to="/Profile"
