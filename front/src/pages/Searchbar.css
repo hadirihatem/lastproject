@@ -1,4 +1,4 @@
-/* .dataresulat{
+.dataresulat{
 overflow: hidden;
 overflow-y: auto;
 box-shadow:  rgba(0, 0, 0, 0) 0px 5px 15px;
@@ -14,14 +14,16 @@ margin-top: 5px;
     align-items: center;
     color: rgb(225, 224, 231);
 }
-.dataItem p{
-    margin-left: 10px;
-}
-a{
+.dataItem 
+Link{
     text-decoration: none;
 }
-a:hover{
+Link:hover{
     background-color: lightgray;
 
 }
- */
+
+.search-Item{
+    margin-top: 20px;
+}
+

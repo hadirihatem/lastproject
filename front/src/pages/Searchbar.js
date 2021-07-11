@@ -28,19 +28,16 @@ const Searchbar = () => {
   };
   return (
     <div>
-      <li className="nav-Item">
+      <li className="search-Item">
         <Space direction="vertical">
           <Search
             placeholder="input search text"
             allowClear
              onChange={hundlefilter}
-            style={{
-              width: "200px",
-              marginTop: "10px",
-            }}
+       
           />
           {filterdata.length != 0 && (
-            <div className="dataresulat">
+            <div  className="dataresulat">
               {filterdata &&
                 filterdata.map((userprof, i) => {
               
