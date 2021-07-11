@@ -2,7 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Input, Space } from "antd";
 import { getUsersList } from "../action/useraction";
+import { Link } from "react-router-dom";
 import "./Searchbar.css";
+
 const { Search } = Input;
 
 const Searchbar = () => {
@@ -31,7 +33,7 @@ const Searchbar = () => {
           <Search
             placeholder="input search text"
             allowClear
-            /*onSearch={onSearch}*/ onChange={hundlefilter}
+             onChange={hundlefilter}
             style={{
               width: "200px",
               marginTop: "10px",
@@ -40,8 +42,17 @@ const Searchbar = () => {
           {filterdata.length != 0 && (
             <div className="dataresulat">
               {filterdata &&
-                filterdata.map((value, key) => {
-                  return <a className="dataItem">{value.firstname}</a>;
+                filterdata.map((userprof, i) => {
+              
+                  return (
+                    <Link
+                      to={`/Profile/${userprof._id}`}
+                      className="dataItem"
+                      key={i}
+                   >
+                      {userprof.firstname + " " + userprof.lastname}
+                    </Link>
+                  );
                 })}
             </div>
           )}

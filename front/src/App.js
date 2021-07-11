@@ -30,15 +30,15 @@ function App() {
           <Route exact path="/register" component={Register} />
           <Route exact path="/login" component={Login} />
           <PrivetRoute exact path="/Profile" component={Profile} />
-          <PrivetRoute exact path="/Profile/:id" component={ProfileFrd} />
-
+          
           <PrivetRoute exact path="/feed" component={Feed} />
           <PrivetRoute exact path="/Groupe" component={Groupe} />
           <PrivetRoute exact path="/Post" component={Postnew} />
           <PrivetRoute exact path="/GroupeAdmin" component={GroupeAdmin} />
           <PrivetRoute exact path="/GroupeAdmin/:id" component={Tablegroupeadmin} />
-
           <PrivetRoute exact path="/Groupe/:id" component={Groupepost} />
+
+          <PrivetRoute exact path="/Profile/:id" component={ProfileFrd} />
         </switch>
       </Router>
     </div>
