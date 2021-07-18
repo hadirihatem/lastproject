@@ -9,8 +9,9 @@ import {
     FOLLOW,
     UNFOLLOW_FAIL,
     UNFOLLOW,
-    GETFRIENDS_SUCCESS,
-    GETFRIENDS_FAIL
+ 
+    SUBSCRIBE_SUCCESS,
+    SUBSCRIBE_FAIL,
 }from './type'
 import axios from "axios";
 
@@ -72,6 +73,7 @@ export const getUsersList = () => (dispatch) => {
 
 
 export const follow =(id)=>(dispatch)=>{
+  console.log(id)
   axios.put(`http://localhost:4000/user/follow/${id}`)
   .then((res)=>{
     dispatch({
@@ -107,20 +109,19 @@ export const unfollow =(id)=>(dispatch)=>{
 
 //--------------getfriends----------------
 
-
-export const getfriends=(id)=>(dispatch)=>{
-  axios.get(`http://localhost:4000/users/friends/${id}`)
-  .then((res)=>{
-    dispatch( {
-      type:GETFRIENDS_SUCCESS,
-      payload:res.data
-    })
-    .catch((err) => {
-      dispatch({
-        type:GETFRIENDS_FAIL ,
-        payload:err
-      });
-      
-    });
+export const subscribe=(id)=>(dispatch)=>{
+axios.put(`http://localhost:4000/user/users/${id}`)
+.then((res)=>{
+  dispatch({
+    type:SUBSCRIBE_SUCCESS,
+    payload: res.data,
   })
+})
+.catch((err) => {
+  dispatch({
+    type:SUBSCRIBE_FAIL ,
+    payload:err
+  });
+  // console.log(err);
+});
 }

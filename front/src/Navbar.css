@@ -115,15 +115,15 @@
 
   .navbar-logo {
     position: absolute;
-    top: 0;
-    left: 0;
+    top: -15px;
+    left: -40px;
     transform: translate(25%, 50%);
   }
 
   .menu-icon {
     display: block;
     position: absolute;
-    top: 0;
+    top: -15px;;
     right: 0;
     transform: translate(-100%, 60%);
     font-size: 1.8rem;
@@ -154,5 +154,4 @@
     background: #fff;
     color: #242424;
     transition: 250ms;
-  }
-}
+  }}

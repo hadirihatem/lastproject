@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import UploadImg from "./UploadImg";
-import { Modal ,Input} from "antd";
+import { Modal, Input } from "antd";
 import { loadUser } from "../action/authaction";
 import "./Profile.css";
 import { updateuser } from "../action/useraction";
@@ -66,10 +66,9 @@ const Profile = () => {
               <button class="btn profile-edit-btn" onClick={showModal}>
                 Edit Profile
               </button>
-
-              <button class="btn profile-edit-btn" onClick={handleclick}>
-                {subscribed ? "Follow" : "Unfollow"}
-              </button>
+              <br />
+              <span> MY FOLLOWERS:{auth.user.followers.length}📷📷📷📷📷</span>
+              <span>FOLLOWOINGS:{auth.user.following.length}</span>
             </div>
 
             <div>
