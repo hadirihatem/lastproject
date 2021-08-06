@@ -31,22 +31,20 @@ const Searchbar = () => {
       <li className="search-Item">
         <Space direction="vertical">
           <Search
-            placeholder="input search text"
+            placeholder="search text"
             allowClear
-             onChange={hundlefilter}
-       
+            onChange={hundlefilter}
           />
           {filterdata.length != 0 && (
-            <div  className="dataresulat">
+            <div className="dataresulat">
               {filterdata &&
                 filterdata.map((userprof, i) => {
-              
                   return (
                     <Link
                       to={`/Profile/${userprof._id}`}
                       className="dataItem"
                       key={i}
-                   >
+                    >
                       {userprof.firstname + " " + userprof.lastname}
                     </Link>
                   );

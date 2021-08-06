@@ -1,6 +1,7 @@
 import React,{useEffect} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getgroupes } from '../action/groupeaction'
+import Avatargroupe from './Avatargroupe'
 import Groupes from './Groupes'
 
 const GroupesList = () => {

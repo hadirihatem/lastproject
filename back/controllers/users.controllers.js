@@ -285,7 +285,7 @@ exports.follow=(req,res)=>{
           return res.status(422).json({error:err})
       }
     User.findByIdAndUpdate(req.userId,{
-        $push:{following:req.body.followId}
+        $push:{following:req.params.followId}
         
     },{new:true}).select("-password").then(result=>{
         res.json(result)
@@ -300,7 +300,7 @@ exports.follow=(req,res)=>{
 
 
 exports.unfollow=(req,res)=>{
-  User.findByIdAndUpdate(req.body.unfollowId,{
+  User.findByIdAndUpdate(req.params.unfollowId,{
       $pull:{followers:req.userId}
   },{
       new:true
@@ -309,7 +309,7 @@ exports.unfollow=(req,res)=>{
           return res.status(422).json({error:err})
       }
     User.findByIdAndUpdate(req.userId,{
-        $pull:{following:req.body.unfollowId}
+        $pull:{following:req.params.unfollowId}
         
     },{new:true}).select("-password").then(result=>{
         res.json(result)

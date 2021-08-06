@@ -52,13 +52,14 @@ const Navbar = () => {
             INTO THE WIL <i style={{color:'white'}} class="fas fa-caravan"></i>
           </Link>
           <div className="menu-icon" onClick={handleClick}>
-            <i className={click ? "fas fa-times" : "fas fa-bars"} style={{color:'white'}}/>
+            <i className={click ? "fas fa-times" : "fas fa-bars" } style={{color:'white'}}/>
           </div>
           {auth.isAuth ? (
             <div>
               <ul className={click ? "nav-menu active" : "nav-menu"}>
-             
+              <li style={{marginLeft:'33%'}}> 
       <Searchbar  />   
+      </li>
                 <li className="nav-Item">
                   <Link
                     to="/Profile"

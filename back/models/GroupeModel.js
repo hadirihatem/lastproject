@@ -19,7 +19,11 @@ const GroupeSchema = new mongoose.Schema({
     type:String,
     required:true
   } ,
-   avatar: String,
+  avatar:{
+  type: String,
+default:"./images/camp1.jpg"
+},
+
   theme: String,
   created_at: {
     type: Date,

@@ -9,24 +9,26 @@ import { follow, unfollow } from "../action/useraction";
 
 const ProfileFrd = ({match}) => {
     const user = useSelector(state => state.user.users)
+    const auth = useSelector(state => state.auth)
+
     const dispatch = useDispatch()
 const newuser= user.find((userp)=>userp._id===match.params.id)
-
+console.log(newuser)
 
 const [subscribed, setSubscribed] = useState(true);
 
 useEffect(() => {
-    if (newuser.followers.find(follow=>follow==(newuser._id))) setSubscribed(false);
+    if (newuser.followers.find(follow=>follow==(auth.user._id))) setSubscribed(false);
     else setSubscribed(true);
   }, []);
 
   const handleclick = () => {
     setSubscribed(!subscribed);
-    if (newuser.followers.find(follow=>follow==(newuser._id)))
-    dispatch(unfollow(newuser._id));
+    if (newuser.followers.find(follow=>follow===(auth.user._id)))
+    dispatch(unfollow(match.params.id));
      else
-    dispatch(follow(newuser._id)) 
-    console.log(newuser._id);
+    dispatch(follow(match.params.id)) 
+    ;
   };
 
 

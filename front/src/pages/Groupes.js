@@ -17,7 +17,7 @@ const Groupes = ({ groupe }) => {
   return (
     <div className="wrapper">
       <div className="cardgr">
-        <img src="/images/camp1.jpg" />
+        <img src={groupe.avatar} />
         <div className="info">
           <h1 className='textr'>{groupe.theme} </h1>
 

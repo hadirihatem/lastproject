@@ -13,6 +13,7 @@ import {
   ADDTOGROUPE_SUCCESS,
   ADDTOGROUPE_FAIL,
   REJECT_FAIL,
+  UPLOAD_PICTURE,
 } from "./type";
 import axios from "axios";
 import setToken from "../setToken";
@@ -161,3 +162,22 @@ export const reject = (groupeId, subId,gadminId) => (dispatch) => {
     );
 };
 
+
+
+//-----avatar----
+
+
+
+export const uploadavatar = (id, data) =>(dispatch)=> {
+  console.log(id)
+  console.log(Array.from(data))
+  axios
+   .put(`http://localhost:4000/groupeavatar/${id}`, data)
+   .then((res) => dispatch(getgroupe(id)))
+     .catch((err) =>
+     dispatch({
+       type: UPLOAD_PICTURE,
+       payload: err
+     })
+   );
+   }

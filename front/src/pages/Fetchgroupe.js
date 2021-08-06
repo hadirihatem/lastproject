@@ -2,6 +2,7 @@ import React from 'react'
 import GroupeAdmin from './GroupeAdmin'
 import { Link } from "react-router-dom";
 import './Groupes.css'
+import Avatargroupe from './Avatargroupe';
 const Fetchgroupe = ({groupe}) => {
   
     
@@ -10,7 +11,8 @@ const Fetchgroupe = ({groupe}) => {
         <div className="cardgr">
         
             
-          <img src="/images/camp1.jpg"/>
+          <img src={groupe.avatar}/>
+         
           <div className="info">
          <Link to={`/GroupeAdmin/${groupe._id}`}>  <p> {groupe.Name&&groupe.theme}</p> </Link>
          </div>

@@ -2,6 +2,7 @@ import React,{useEffect} from 'react'
 import {useDispatch,useSelector} from 'react-redux'
 import { getgroupe } from '../action/groupeaction'
 import { getPosts } from '../action/postaction'
+import Avatargroupe from './Avatargroupe'
 import Modalgroupe from "./Modalgroupe"
 import Posts from "./Posts";
 
@@ -22,6 +23,7 @@ const Groupepost = ({match}) => {
         
         <Modalgroupe groupeId={match.params.id}/>
             <h1>{groupe.Name}</h1>
+          
             {newPosts.map(post => <Posts post={post}/>)}
            
 

@@ -4,9 +4,10 @@ const GroupeModel = require("../models/GroupeModel");
 //----------------create groupe ------------
 
 exports.insert = (req, res) => {
-  
-  Groupe.createGroupe(req.body,req.userId).then((groupe) => {
-    groupe != undefined ? res.status(201).send({ msg: "groupe created successfuly" }) : res.status(400).send({ msg: "invalid groupe" });
+  Groupe.createGroupe(req.body, req.userId).then((groupe) => {
+    groupe != undefined
+      ? res.status(201).send({ msg: "groupe created successfuly" })
+      : res.status(400).send({ msg: "invalid groupe" });
   });
 };
 
@@ -23,9 +24,9 @@ exports.getById = (req, res) => {
 //-------update--------------
 
 exports.update = (req, res) => {
- Groupe.putgroupe(req.body,req.params.groupeId)
- .then(()=>{
-    res.status(200).send([
+  Groupe.putgroupe(req.body, req.params.groupeId)
+    .then(() => {
+      res.status(200).send([
         {
           msg: "groupe updated",
         },
@@ -52,48 +53,40 @@ exports.removeById = (req, res) => {
       res.status(404).send("groupe not found, retry with a valid groupeId.")
     );
 };
- 
-
 
 //------------------------------
-exports.list=(req,res)=>{
-  Groupe.list(page)
+exports.list = (req, res) => {
+  Groupe.list(page);
   then(() => {
     res.status(200).send([
       {
         msg: "get groupes",
       },
     ]);
-  })
-  .catch(() =>
+  }).catch(() =>
     res.status(404).send("groupe not found, retry with a valid groupeId.")
   );
-}
+};
 
+exports.groupeadmin = (req, res) => {
+  Groupe.findBygroupeAdmin(req.params.adminId)
 
-exports.groupeadmin=(req,res)=>{
-
-    Groupe.findBygroupeAdmin(req.params.adminId)
-
-      .then((result) => {
-        res.status(200).send({
-          code: 200,
-          status: "success",
-          message: "groupeadmin fetched",
-          data: result,
-          //req: req.query,
-        });
-      })
-      .catch((e) =>
-        res
-          .status(404)
-          .send("groupeadmin not found, retry with a valid GroupeId.")
-      );
-  
-}
+    .then((result) => {
+      res.status(200).send({
+        code: 200,
+        status: "success",
+        message: "groupeadmin fetched",
+        data: result,
+        //req: req.query,
+      });
+    })
+    .catch((e) =>
+      res
+        .status(404)
+        .send("groupeadmin not found, retry with a valid GroupeId.")
+    );
+};
 //--------------------------
-
-
 
 exports.list = (req, res) => {
   // let limit =
@@ -119,9 +112,7 @@ exports.list = (req, res) => {
         });
       })
       .catch((e) =>
-        res
-          .status(404)
-          .send("groupe not found, retry with a valid GroupeId.")
+        res.status(404).send("groupe not found, retry with a valid GroupeId.")
       );
   }
 
@@ -137,9 +128,7 @@ exports.list = (req, res) => {
         });
       })
       .catch((e) =>
-        res
-          .status(404)
-          .send("groupe not found, retry with a valid GroupeId.")
+        res.status(404).send("groupe not found, retry with a valid GroupeId.")
       );
   }
 
@@ -155,9 +144,7 @@ exports.list = (req, res) => {
         });
       })
       .catch((e) =>
-        res
-          .status(404)
-          .send("groupe not found, retry with a valid GroupeId.")
+        res.status(404).send("groupe not found, retry with a valid GroupeId.")
       );
   }
   Groupe.list(page).then((result) => {
@@ -170,70 +157,90 @@ exports.list = (req, res) => {
   });
 };
 
-
 //-----------putsub-------------
 
 exports.putsub = async (req, res) => {
-   
   try {
     const groupe = await Groupe.findById(req.params.groupeId);
-    if (!groupe) return res.status(404).json("Groupe not found")
-    console.log(groupe.subvalid)
-   
-    const search = groupe.subvalid.find(sub=>sub == req.userId)
-    
+    if (!groupe) return res.status(404).json("Groupe not found");
+    console.log(groupe.subvalid);
+
+    const search = groupe.subvalid.find((sub) => sub == req.userId);
+
     if (!search) {
-      console.log('true')
-      const newgroupe = await GroupeModel.findByIdAndUpdate(req.params.groupeId,{ subvalid:[...groupe.subvalid,req.userId]});
+      console.log("true");
+      const newgroupe = await GroupeModel.findByIdAndUpdate(
+        req.params.groupeId,
+        { subvalid: [...groupe.subvalid, req.userId] }
+      );
       res.status(200).json(newgroupe.subvalid);
-    } 
-    else {
-      console.log('false')
-      const newgroupe = await GroupeModel.findByIdAndUpdate(req.params.groupeId,{ $pull: { subvalid: req.userId}});
+    } else {
+      console.log("false");
+      const newgroupe = await GroupeModel.findByIdAndUpdate(
+        req.params.groupeId,
+        { $pull: { subvalid: req.userId } }
+      );
       // await groupe.updateOne({ $pull: { subvalid: req.userId } });
       res.status(200).json(newgroupe.subvalid);
     }
-   
   } catch (err) {
-    res.status(500).json(err); 
+    res.status(500).json(err);
   }
 };
 
 //----------addtogroupe-------------+
 
-
-
-exports.addtogroupe=async(req,res)=>{
+exports.addtogroupe = async (req, res) => {
   try {
     const groupe = await Groupe.findById(req.params.groupeId);
-    if (!groupe) return res.status(404).json("Groupe not found")
-      const firstgroupe = await GroupeModel.findByIdAndUpdate(req.params.groupeId,{ $push:{subscribe:req.params.subId}});
-       const newgroupe = await GroupeModel.findByIdAndUpdate(req.params.groupeId,{ $pull:{subvalid:req.params.subId}});
-      res.status(200).json(newgroupe.subscribe);
-      console.log(newgroupe.subscribe)
-     
-    
-   
+    if (!groupe) return res.status(404).json("Groupe not found");
+    const firstgroupe = await GroupeModel.findByIdAndUpdate(
+      req.params.groupeId,
+      { $push: { subscribe: req.params.subId } }
+    );
+    const newgroupe = await GroupeModel.findByIdAndUpdate(req.params.groupeId, {
+      $pull: { subvalid: req.params.subId },
+    });
+    res.status(200).json(newgroupe.subscribe);
+    console.log(newgroupe.subscribe);
   } catch (err) {
-    res.status(500).json(err); 
+    res.status(500).json(err);
   }
-}
+};
 //------------------reject-------
 
-
-exports.reject=async(req,res)=>{
+exports.reject = async (req, res) => {
   try {
     const groupe = await Groupe.findById(req.params.groupeId);
-    if (!groupe) return res.status(404).json("Groupe not found")
-  
-   
-    
-    const newgroupe = await GroupeModel.findByIdAndUpdate(req.params.groupeId,{ $pull: { subvalid: req.params.subId}});
-     
-      res.status(200).json(newgroupe.subvalid);
-   
-   
+    if (!groupe) return res.status(404).json("Groupe not found");
+
+    const newgroupe = await GroupeModel.findByIdAndUpdate(req.params.groupeId, {
+      $pull: { subvalid: req.params.subId },
+    });
+
+    res.status(200).json(newgroupe.subvalid);
   } catch (err) {
-    res.status(500).json(err); 
+    res.status(500).json(err);
   }
+};
+
+
+
+
+
+//-------------------avatar-------
+
+module.exports.uploadgroupe = async (req,res) => {
+
+  let path = `http://localhost:4000/uploads/${req.file.filename}`;
+  console.log(path)
+  console.log(req.params.id)
+  try {
+  const newGroupe = await GroupeModel.findByIdAndUpdate(req.params.id,{avatar:path})
+  return res.status(201).json(newGroupe);
+} catch (err) {
+  console.error(err)
+  return res.status(400).send(err);
 }
+
+};

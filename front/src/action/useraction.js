@@ -21,6 +21,8 @@ import { loadUser } from './authaction';
 
 
 export const uploadPicture = (data, id) =>(dispatch)=> {
+  console.log(id)
+  console.log(data)
        axios
         .put(`http://localhost:4000/uploadpic/${id}`, data)
         .then((res) => dispatch(loadUser(id)))
@@ -31,6 +33,8 @@ export const uploadPicture = (data, id) =>(dispatch)=> {
           })
         );
         }
+
+
 
 export const updateuser=(id,data )=>(dispatch)=>{
   console.log(id)
@@ -72,9 +76,9 @@ export const getUsersList = () => (dispatch) => {
 }
 
 
-export const follow =(id)=>(dispatch)=>{
-  console.log(id)
-  axios.put(`http://localhost:4000/user/follow/${id}`)
+export const follow =(userId)=>(dispatch)=>{
+  
+  axios.put(`http://localhost:4000/user/follow/${userId}`)
   .then((res)=>{
     dispatch({
       type: FOLLOW,
@@ -90,8 +94,8 @@ export const follow =(id)=>(dispatch)=>{
   });
 }
 
-export const unfollow =(id)=>(dispatch)=>{
-  axios.put(`http://localhost:4000/user/follow/${id}`)
+export const unfollow =(userId)=>(dispatch)=>{
+  axios.put(`http://localhost:4000/user/unfollow/${userId}`)
   .then((res)=>{
     dispatch({
       type:UNFOLLOW,

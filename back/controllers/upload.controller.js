@@ -17,5 +17,4 @@ module.exports.uploadProfil = async (req,res) => {
   console.error(err)
   return res.status(400).send(err);
 }
-
 };

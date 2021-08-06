@@ -3,6 +3,7 @@ import React from "react";
 import { Table, Space } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { addtogroupe, reject } from "../action/groupeaction";
+import Avatargroupe from "./Avatargroupe";
 
 const Tablegroupeadmin = ({ match }) => {
   const dispatch = useDispatch();
@@ -77,7 +78,9 @@ const Tablegroupeadmin = ({ match }) => {
   return (
     <div>
       <Table dataSource={data} columns={columns} />
+      <Avatargroupe groupe={newgroupe}/>
     </div>
+    
   );
 };
 
