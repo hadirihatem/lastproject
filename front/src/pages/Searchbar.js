@@ -27,14 +27,14 @@ const Searchbar = () => {
     }
   };
   return (
-    <div>
+    <div className="search-all">
       <li className="search-Item">
-        <Space direction="vertical">
-          <Search
-            placeholder="search text"
-            allowClear
-            onChange={hundlefilter}
-          />
+      <Search
+      placeholder="search text"
+      allowClear
+      onChange={hundlefilter}
+      />
+      <Space direction="vertical" className="space">
           {filterdata.length != 0 && (
             <div className="dataresulat">
               {filterdata &&
