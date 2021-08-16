@@ -24,6 +24,14 @@ Link:hover{
 }
 
 .search-Item{
-    margin-top: 30px;
+    margin-top: 5px;
+}
+.search-all{
+position: relative;
+}
+.space{
+    position:absolute;
+    top: 50px;
+    left: 0;
 }
 

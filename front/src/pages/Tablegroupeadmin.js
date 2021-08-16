@@ -50,7 +50,7 @@ const Tablegroupeadmin = ({ match }) => {
                 reject(
                   newgroupe._id,
                   newgroupe.subvalid[key.key]._id,
-                  gadmin[0].groupeAdmin,
+                  gadmin[0].groupeAdmin
                 )
               )
             }
@@ -77,10 +77,16 @@ const Tablegroupeadmin = ({ match }) => {
 
   return (
     <div>
-      <Table dataSource={data} columns={columns} />
-      <Avatargroupe groupe={newgroupe}/>
+      <div>
+        <img src={newgroupe.avatar} style={{ width: "100%" }} />
+      </div>
+      <div>
+        <Table dataSource={data} columns={columns} />
+      </div>
+      <div>
+        <Avatargroupe groupe={newgroupe} />
+      </div>
     </div>
-    
   );
 };
 
