@@ -27,6 +27,9 @@ import MoreVertIcon from "@material-ui/icons/MoreVert";
 import "./Posts.css";
 import DeleteBpost from "./DeleteBpost";
 import { deletepost } from "../action/postaction";
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+
 
 import { Image } from "antd";
 import EditPost from "./EditPost";
@@ -56,8 +59,12 @@ import 'antd/dist/antd.css'
       backgroundColor: red[500],
     },
   }));
+  
+
 
 const Posts = ({ post }) => {
+
+
   const [expanded, setExpanded] = React.useState(false);
 
   const handleExpandClick = () => {
@@ -74,7 +81,7 @@ const Posts = ({ post }) => {
     axios
       .get("http://localhost:4000/api/comment/getComments/" + post._id)
       .then((res) => {
-        console.log(res.data);
+        
         return setComments(res.data);
       })
       .catch((err) => setError(err.response.data));
@@ -135,13 +142,15 @@ const Posts = ({ post }) => {
           <CardContent>
             <Typography paragraph>
               {" "}
-              <Comments postId={post._id} comments={comments} />
+              <Comments postId={post._id} comments={comments} refreshComment={refreshComment} />
               <Comment
                 refreshComment={refreshComment}
                 postId={post._id}
                 writer={auth.user._id}
               />
+        
             </Typography>
+
           </CardContent>
         </Collapse>
       </Card>
@@ -150,3 +159,6 @@ const Posts = ({ post }) => {
 };
 
 export default Posts;
+
+
+

@@ -26,6 +26,7 @@ app.use(bodyParser.urlencoded({extended:false}))
  //define Routes   
  app.use('/api/comment',require('./routes/comment'))
 
+
  userroutes(app)
  postroutes(app)
  grouperoutes(app)

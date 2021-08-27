@@ -48,7 +48,7 @@ const Comment = (props) => {
                 value ={Comment}
                 placeholder="write your comment"/>
                 <br/>
-                <button style={{width:'20%' , height:'50px'}} type="submit">add comment</button>
+                <button style={{width:'20%' , height:'30px'}} type="submit">SEND</button>
             </form>
         </div>
     )

@@ -13,7 +13,9 @@ import {
   POSTDELETED_FAIL,
   POSTUPDATED_SUCCESS,
   POSTUPDATED_FAIL,
-  
+  DELETECOMMENT_FAIL,
+  DELETECOMMENT_SUSSESS,
+
 } from "./type";
 import axios from "axios";
 import setToken from "../setToken";
@@ -53,10 +55,7 @@ export const getpostbydate = () => (dispatch) => {
 //-------------------aadpost----------------
 
 export const addPost = (data, file) => (dispatch) => {
-  console.log(data, file);
-  // const formData= new FormData();
-  // formData.append('picture',file);
-  // formData.append('data',JSON.stringify(data));
+ 
   let formData = new FormData();
   formData.append("picture", file);
   formData.append("data", JSON.stringify(data));
@@ -103,7 +102,31 @@ export const getComments = (postId) => (dispatch) => {
         payload: err.response.data.msg,
       })
     );
-};
+  };
+
+
+  //--------------------------delete comment------------
+
+
+export const deletecomment=(commId)=>(dispatch)=>{
+  console.log(commId)
+axios.delete("http://localhost:4000/api/comment/removecomment/"+commId)
+.then((res)=>{
+  dispatch({
+    type:DELETECOMMENT_SUSSESS,
+    payload:res.data
+  });
+  // dispatch(getComments())
+})
+.catch((err)=>{
+  dispatch({
+    type:DELETECOMMENT_FAIL,
+    payload:err
+  })
+})
+}
+
+
 //----------addliketopost---------------------
 
 export const addliketopost = (postId) => (dispatch) => {
@@ -121,6 +144,9 @@ export const addliketopost = (postId) => (dispatch) => {
       })
     );
 };
+
+
+
 
 //------------postmostiked----------------
 

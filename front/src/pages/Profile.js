@@ -61,13 +61,13 @@ const Profile = () => {
             </div>
 
             <div class="profile-user-settings">
-              <h1 class="profile-user-name">{auth.user.firstname}</h1>
+              <h1 class="profile-user-name">{auth.user.firstname} {auth.user.lastname}</h1>
 
               <button class="btn profile-edit-btn" onClick={showModal}>
                 Edit Profile
               </button>
               <br />
-              <span> MY FOLLOWERS:{auth.user.followers.length}📷📷📷📷📷</span>
+              <span>FOLLOWERS:{auth.user.followers.length}📷📷📷📷📷</span>
               <span>FOLLOWOINGS:{auth.user.following.length}</span>
             </div>
 
@@ -111,7 +111,7 @@ const Profile = () => {
             <div class="profile-bio">
               <p>
                 <span class="profile-real-name">
-                  {auth.user.firstname} {auth.user.lastname}:
+             
                 </span>{" "}
                 {auth.user.bio} 📷✈️🏕️
               </p>

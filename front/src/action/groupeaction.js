@@ -145,9 +145,7 @@ export const addtogroupe = (groupeId, subId,gadminId) => (dispatch) => {
 //----------reject-------
 
 export const reject = (groupeId, subId,gadminId) => (dispatch) => {
-  console.log('hello',groupeId)
-  console.log('hello2',subId)
-  console.log('hello3',gadminId)
+
 
   axios
     .put(`http://localhost:4000/reject/${groupeId}/${subId}`)
